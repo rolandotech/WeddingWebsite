@@ -75,7 +75,9 @@ export default function Welcome() {
             <i />
           </div>
         </div>
-        <p className="welcome-band__gold">Listen to our wedding song</p>
+        <p className="welcome-band__gold">
+          Enjoy our wedding song, an original composition written and composed by Rolando Mendoza Jr.
+        </p>
         <h2 className="welcome-band__title">Welcome to our wedding website</h2>
         <p className="welcome-band__copy">{wedding.welcome}</p>
         <p className="welcome-band__hash-label">Please use our wedding hashtags:</p>
