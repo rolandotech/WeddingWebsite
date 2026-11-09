@@ -1,47 +1,34 @@
-import Reveal from "./Reveal";
-import SectionHeader from "./SectionHeader";
 import { mapsSearch, wedding } from "../data/wedding";
 
 export default function WeddingDetails() {
   return (
-    <section className="section section--cream" id="details">
-      <div className="wrap">
-        <SectionHeader
-          kicker="When & where"
-          title="Wedding Details"
-          subtitle="Join us in Bacolod — vows at Lupit Church, then an evening at Garden Royale."
-        />
-        <div className="details-grid">
-          {wedding.details.map((item, index) => (
-            <Reveal key={item.id} delay={index * 80}>
-              <article className="detail-card">
-                <p className="kicker">{item.kicker}</p>
-                <h3>{item.place}</h3>
-                <dl>
-                  <div>
-                    <dt>Hour</dt>
-                    <dd>{item.time}</dd>
-                  </div>
-                  <div>
-                    <dt>Venue</dt>
-                    <dd>
-                      {item.venue}
-                      <br />
-                      {item.address}
-                    </dd>
-                  </div>
-                </dl>
-                <p className="detail-card__note">{item.note}</p>
-                <a
-                  className="btn btn--ghost"
-                  href={item.mapsUrl || mapsSearch(item.mapsQuery)}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  View location
-                </a>
-              </article>
-            </Reveal>
+    <section className="section section--white venue-section" id="details">
+      <div className="wrap--wide">
+        <header className="section-header">
+          <h2 className="section-title">The Venue</h2>
+        </header>
+        <div className="venue-grid">
+          {wedding.details.map((item) => (
+            <article className="venue-card" key={item.id}>
+              <img src={item.image} alt="" />
+              <h3>{item.id === "ceremony" ? "Ceremony" : "Reception"}</h3>
+              <p>
+                {item.place}
+                <br />
+                {item.venue}
+                <br />
+                {item.address}
+              </p>
+              <p>{item.time}</p>
+              <a
+                className="btn btn--light"
+                href={item.mapsUrl || mapsSearch(item.mapsQuery)}
+                target="_blank"
+                rel="noreferrer"
+              >
+                View map
+              </a>
+            </article>
           ))}
         </div>
       </div>

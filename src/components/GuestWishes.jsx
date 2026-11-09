@@ -1,6 +1,4 @@
 import { useState } from "react";
-import Reveal from "./Reveal";
-import SectionHeader from "./SectionHeader";
 import { useLocalList } from "../hooks/useLocalList";
 
 const empty = { name: "", message: "" };
@@ -20,14 +18,15 @@ export default function GuestWishes() {
   };
 
   return (
-    <section className="section section--beige" id="wishes">
+    <section className="section section--paper" id="wishes">
       <div className="wrap wishes-layout">
-        <Reveal>
-          <SectionHeader
-            kicker="Leave a blessing"
-            title="Wedding Wishes"
-            subtitle="A few words from those who love us — kept here as a small book of the day."
-          />
+        <div>
+          <header className="section-header" style={{ textAlign: "left" }}>
+            <h2 className="section-title">Wedding Wishes</h2>
+            <p className="section-subtitle" style={{ marginLeft: 0 }}>
+              A few words from those who love us.
+            </p>
+          </header>
           <form className="wish-form" onSubmit={onSubmit}>
             <div className="form-grid">
               <label className="field">
@@ -44,29 +43,26 @@ export default function GuestWishes() {
                   required
                   value={form.message}
                   onChange={(e) => setForm((prev) => ({ ...prev, message: e.target.value }))}
-                  placeholder="A blessing, a memory, a hope for their years ahead"
                 />
               </label>
-              <button className="btn" type="submit">
+              <button className="btn btn--solid" type="submit">
                 Leave a wish
               </button>
             </div>
           </form>
-        </Reveal>
-        <Reveal delay={80}>
-          <div className="wish-list" aria-live="polite">
-            {wishes.length === 0 ? (
-              <p className="empty-note">Be the first to write in the book.</p>
-            ) : (
-              wishes.map((wish) => (
-                <blockquote className="wish-card" key={wish.id}>
-                  <p>“{wish.message}”</p>
-                  <cite>— {wish.name}</cite>
-                </blockquote>
-              ))
-            )}
-          </div>
-        </Reveal>
+        </div>
+        <div className="wish-list" aria-live="polite">
+          {wishes.length === 0 ? (
+            <p className="empty-note">Be the first to write in the book.</p>
+          ) : (
+            wishes.map((wish) => (
+              <blockquote className="wish-card" key={wish.id}>
+                <p>“{wish.message}”</p>
+                <cite>— {wish.name}</cite>
+              </blockquote>
+            ))
+          )}
+        </div>
       </div>
     </section>
   );
