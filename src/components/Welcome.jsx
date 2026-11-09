@@ -22,18 +22,21 @@ export default function Welcome() {
     if (!audio) return undefined;
     const onTime = () => setCurrent(audio.currentTime);
     const onMeta = () => {
-      setDuration(audio.duration);
+      if (Number.isFinite(audio.duration)) setDuration(audio.duration);
       setReady(true);
     };
     const onEnd = () => setPlaying(false);
     const onErr = () => setReady(false);
     audio.addEventListener("timeupdate", onTime);
     audio.addEventListener("loadedmetadata", onMeta);
+    audio.addEventListener("canplay", onMeta);
     audio.addEventListener("ended", onEnd);
     audio.addEventListener("error", onErr);
+    if (audio.readyState >= 1) onMeta();
     return () => {
       audio.removeEventListener("timeupdate", onTime);
       audio.removeEventListener("loadedmetadata", onMeta);
+      audio.removeEventListener("canplay", onMeta);
       audio.removeEventListener("ended", onEnd);
       audio.removeEventListener("error", onErr);
     };

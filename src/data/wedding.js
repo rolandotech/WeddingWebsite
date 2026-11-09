@@ -25,7 +25,7 @@ export const wedding = {
   },
   hashtag: "#RolandoAndDanica",
   hashtags: ["#RolandoAndDanica", "#RD2026"],
-  song: publicFile("theme-song.mp3"),
+  song: publicFile("fairytale.m4a"),
   rsvpBy: "November 30, 2026",
   rsvpNote:
     "We are so excited to celebrate our wedding day with you! To ensure an intimate and enjoyable experience for everyone, we have reserved seating for each guest individually. We kindly ask that each invitation is for ONE (1) PERSON ONLY. Please RSVP by November 30, 2026 to confirm your attendance. We can’t wait to share this unforgettable day with you!",
