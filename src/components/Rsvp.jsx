@@ -1,11 +1,11 @@
 import { useState } from "react";
-import Reveal from "./Reveal";
-import SectionHeader from "./SectionHeader";
 import { useLocalList } from "../hooks/useLocalList";
 import { wedding } from "../data/wedding";
 
 const empty = {
   name: "",
+  email: "",
+  phone: "",
   attending: "yes",
   message: "",
 };
@@ -32,90 +32,89 @@ export default function Rsvp() {
   };
 
   return (
-    <section className="section section--ivory" id="rsvp">
+    <section className="section section--white" id="rsvp">
       <div className="wrap rsvp-layout">
-        <Reveal>
-          <SectionHeader
-            kicker="Kindly reply"
-            title="Wedding Invitation"
-            subtitle="This invitation is for one guest. Kindly reply with your own name, and let us know whether you will be with us."
-          />
-          <p>
-            {wedding.groom.full} and {wedding.bride.full} request the honour of your presence on{" "}
-            {wedding.date.display}, in {wedding.location.city}. Each invitation admits one person
-            only; additional guests require their own invitation.
-          </p>
-        </Reveal>
-        <Reveal delay={80}>
-          {done ? (
-            <div className="form-card rsvp-success">
-              <p className="kicker">Received with gratitude</p>
-              <h3>
-                {form.attending === "yes"
-                  ? `We will look for you, ${form.name.split(" ")[0]}.`
-                  : `You will be missed, ${form.name.split(" ")[0]}.`}
-              </h3>
-              <p>
-                {form.attending === "yes"
-                  ? "Your seat will be waiting at Lupit Church. Thank you for sharing this day with us."
-                  : "Thank you for letting us know. You remain close to us, even from afar."}
-              </p>
+        <div>
+          <header className="section-header" style={{ textAlign: "left" }}>
+            <h2 className="section-title">RSVP</h2>
+            <p className="section-subtitle" style={{ marginLeft: 0 }}>
+              {wedding.rsvpNote}
+            </p>
+          </header>
+        </div>
+        {done ? (
+          <div className="form-card rsvp-success">
+            <h3>Thank you for informing us of your attendance!</h3>
+            <p>
+              {form.attending === "yes"
+                ? `We will look for you, ${form.name.split(" ")[0]}. Your seat will be waiting at Sacred Heart Seminary and Shrine.`
+                : `You will be missed, ${form.name.split(" ")[0]}.`}
+            </p>
+            <p>— {wedding.groom.first} and {wedding.bride.first}</p>
+          </div>
+        ) : (
+          <form className="form-card" onSubmit={onSubmit}>
+            <div className="form-grid">
+              <label className="field">
+                <span>Name:</span>
+                <input name="name" value={form.name} onChange={onChange} required autoComplete="name" />
+              </label>
+              <label className="field">
+                <span>Email:</span>
+                <input
+                  name="email"
+                  type="email"
+                  value={form.email}
+                  onChange={onChange}
+                  required
+                  autoComplete="email"
+                />
+              </label>
+              <label className="field">
+                <span>Phone:</span>
+                <input
+                  name="phone"
+                  type="tel"
+                  value={form.phone}
+                  onChange={onChange}
+                  autoComplete="tel"
+                />
+              </label>
+              <label className="field">
+                <span>Message:</span>
+                <textarea name="message" value={form.message} onChange={onChange} />
+              </label>
+              <fieldset className="field field--choice">
+                <legend className="field-label">Are you attending?</legend>
+                <div className="choice-row">
+                  <label className="choice">
+                    <input
+                      type="radio"
+                      name="attending"
+                      value="yes"
+                      checked={form.attending === "yes"}
+                      onChange={onChange}
+                    />
+                    Yes, I&apos;ll be there.
+                  </label>
+                  <label className="choice">
+                    <input
+                      type="radio"
+                      name="attending"
+                      value="no"
+                      checked={form.attending === "no"}
+                      onChange={onChange}
+                    />
+                    No, I can&apos;t make it.
+                  </label>
+                </div>
+              </fieldset>
+              <button className="btn btn--solid" type="submit">
+                S u b m i t
+              </button>
             </div>
-          ) : (
-            <form className="form-card" onSubmit={onSubmit}>
-              <div className="form-grid">
-                <label className="field">
-                  <span>Guest name</span>
-                  <input
-                    name="name"
-                    value={form.name}
-                    onChange={onChange}
-                    required
-                    autoComplete="name"
-                    placeholder="Your full name"
-                  />
-                </label>
-                <fieldset className="field">
-                  <legend className="field-label">Attendance</legend>
-                  <div className="choice-row">
-                    <label className="choice">
-                      <input
-                        type="radio"
-                        name="attending"
-                        value="yes"
-                        checked={form.attending === "yes"}
-                        onChange={onChange}
-                      />
-                      Joyfully accept
-                    </label>
-                    <label className="choice">
-                      <input
-                        type="radio"
-                        name="attending"
-                        value="no"
-                        checked={form.attending === "no"}
-                        onChange={onChange}
-                      />
-                      Regretfully decline
-                    </label>
-                  </div>
-                </fieldset>
-                <label className="field">
-                  <span>A note (optional)</span>
-                  <textarea
-                    name="message"
-                    value={form.message}
-                    onChange={onChange}
-                    placeholder="Dietary notes, a song, or a few words for us"
-                  />
-                </label>
-                <button className="btn" type="submit">
-                  Send reply
-                </button>
-              </div>
-            </form>
-          )}
-        </Reveal>
+          </form>
+        )}
       </div>
     </section>
   );

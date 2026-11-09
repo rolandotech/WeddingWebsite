@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react";
-import Reveal from "./Reveal";
-import SectionHeader from "./SectionHeader";
 import { wedding } from "../data/wedding";
 
 export default function Gallery() {
@@ -28,25 +26,22 @@ export default function Gallery() {
   }, [active]);
 
   return (
-    <section className="section section--cream" id="gallery">
-      <div className="wrap wrap--wide">
-        <SectionHeader
-          kicker="Light & leaf"
-          title="Photo Gallery"
-          subtitle="A gathering of quiet frames — gardens, tables, and the kind of light we hope will find us on the day."
-        />
+    <section className="section section--white gallery-section" id="gallery">
+      <div className="wrap--wide">
+        <header className="section-header">
+          <h2 className="section-title">Pre-nup Photos</h2>
+        </header>
         <div className="gallery-grid">
           {wedding.gallery.map((photo, index) => (
-            <Reveal key={photo.src} delay={(index % 3) * 60}>
-              <button
-                className="gallery-item"
-                type="button"
-                onClick={() => setActive(index)}
-                aria-label={`Open photograph: ${photo.alt}`}
-              >
-                <img src={photo.src} alt={photo.alt} loading="lazy" />
-              </button>
-            </Reveal>
+            <button
+              className="gallery-item"
+              type="button"
+              key={photo.src}
+              onClick={() => setActive(index)}
+              aria-label={`Open photograph: ${photo.alt}`}
+            >
+              <img src={photo.src} alt={photo.alt} loading="lazy" />
+            </button>
           ))}
         </div>
       </div>

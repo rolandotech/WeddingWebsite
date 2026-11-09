@@ -1,25 +1,18 @@
 import { useEffect, useState } from "react";
+import { wedding } from "../data/wedding";
 
 const links = [
   { href: "#story", label: "Story" },
-  { href: "#details", label: "Details" },
-  { href: "#countdown", label: "When" },
-  { href: "#timeline", label: "Day" },
-  { href: "#gallery", label: "Gallery" },
+  { href: "#dress", label: "Dress" },
+  { href: "#details", label: "Venue" },
+  { href: "#faq", label: "FAQ" },
+  { href: "#timeline", label: "Timeline" },
+  { href: "#gallery", label: "Photos" },
   { href: "#rsvp", label: "RSVP" },
-  { href: "#wishes", label: "Wishes" },
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -29,10 +22,10 @@ export default function Navbar() {
   }, [open]);
 
   return (
-    <header className={`site-nav ${scrolled ? "is-scrolled" : ""} ${open ? "is-open" : ""}`}>
+    <header className={`site-nav ${open ? "is-open" : ""}`}>
       <div className="site-nav__inner">
         <a className="site-nav__brand" href="#top">
-          R &amp; D
+          {wedding.groom.first} and {wedding.bride.first}
         </a>
         <nav aria-label="Primary">
           <ul className="site-nav__links">
