@@ -145,7 +145,7 @@ export const wedding = {
       { name: "Beige", hex: "#e6dccb", image: img("photo-1524504388940-b1c1722653e1", "w=600&q=80") },
     ],
     notes: [
-      "We kindly request that all guests honor the dress code by avoiding overly casual attire such as polo shirts, slippers, denim, and jeans. Please avoid mini dresses.",
+      "We kindly request that all guests honor the dress code by avoiding overly casual attire such as slippers, denim, and jeans. Please avoid mini dresses.",
       "Please adhere to the specified dress code and color motif provided. Dressing accordingly is deeply appreciated, as it will contribute to the elegance and harmony of our celebration.",
       "We look forward to seeing you in your finest that complements our chosen theme!",
     ],
@@ -210,7 +210,7 @@ export const wedding = {
     },
     {
       q: "Am I allowed to take pictures and/or videos during the ceremony?",
-      a: "We request everyone to keep the ceremony camera-free. While our I Do’s are unplugged, our reception is not — you’ll have plenty of chances to take pictures there. Please use our official hashtags.",
+      a: "Feel free to capture our special moments during the ceremony, but kindly remain in your seat so we can all enjoy it together and avoid interruptions. At the reception, snap away — there will be plenty of time for photos!",
     },
     {
       q: "Do we really need to RSVP? We already said “YES” to the couple.",
